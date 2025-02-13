@@ -57,7 +57,7 @@ class Enrollment(models.Model):
     enrollment_date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f"{self.student.name} enrolled in {self.course.name}"
+        return f"{self.student.name} enrolled in {self.course.title}"
 
     class Meta:
         unique_together = [["student", "course"]]

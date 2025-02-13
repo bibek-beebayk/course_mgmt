@@ -37,6 +37,9 @@ class Course(models.Model):
         Category, on_delete=models.PROTECT, related_name="courses"
     )
 
+    def __str__(self):
+        return self.title
+
 
 class Video(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="videos")
