@@ -6,7 +6,7 @@
     pip install -r requirements/dev.txt
     ```
 
-2. Create new file ```core/settings/env.py``` to store environment specific settings. Copy the SMTP emiail configuration from ```core/settings/env.py.sample``` to the new env.py file and configure the setting with your credentials. If set properly, an email will be sent to the student with password when a new student is created.
+2. Create new file ```core/settings/env.py``` to store environment specific settings. Copy the SMTP email configuration from ```core/settings/env.py.sample``` to the new env.py file and configure the setting with your credentials. If set properly, an email will be sent to the student with password when a new student is created.
 
 2. Run migrations:
     ```bash
