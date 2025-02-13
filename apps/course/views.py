@@ -21,5 +21,5 @@ def index(request):
 
     context = {}
     context["courses"] = Course.objects.all()
-    context["students"] = Student.objects.all()
+    context["students"] = Student.objects.order_by("name")
     return render(request, "index.html", context)

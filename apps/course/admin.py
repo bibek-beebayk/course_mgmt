@@ -1,6 +1,8 @@
 from django.contrib import admin
-from .models import Course, MCQOption, Video, Document, Category, MCQ
-from nested_admin import NestedTabularInline, NestedModelAdmin
+from nested_admin import NestedModelAdmin, NestedTabularInline
+
+from .models import MCQ, Category, Course, Document, MCQOption, Video
+
 
 class VideoInline(NestedTabularInline):
     model = Video
@@ -11,9 +13,17 @@ class DocumentInline(NestedTabularInline):
     model = Document
     extra = 0
 
+
 class MCQOptionInline(NestedTabularInline):
     model = MCQOption
     extra = 0
+
+    def get_min_num(self, request, obj=None, **kwargs):
+        return 4
+
+    def get_max_num(self, request, obj=None, **kwargs):
+        return 4
+
 
 class MCQInline(NestedTabularInline):
     model = MCQ
@@ -37,8 +47,9 @@ class MCQInline(NestedTabularInline):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ["name", "priority", "parent" ]
+    list_display = ["name", "priority", "parent"]
     search_fields = ["name"]
+
 
 @admin.register(Course)
 class CourseAdmin(NestedModelAdmin):

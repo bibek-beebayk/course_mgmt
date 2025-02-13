@@ -175,7 +175,7 @@
                     onclick="openModal(event)" value="{{course.id}}">Edit</button>
             </div>
             <ul>
-                {% for enrollment in course.enrollments.all %}
+                {% for enrollment in course.enrollments.all|dictsort:'student.name' %}
                 <li>{{enrollment.student.name}}</li>
                 {% endfor %}
             </ul>
