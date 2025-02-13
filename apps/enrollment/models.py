@@ -27,3 +27,7 @@ class Enrollment(models.Model):
 
     def __str__(self):
         return f"{self.student.name} enrolled in {self.course.name}"
+    
+    class Meta:
+        unique_together = [["student", "course"]]
+
