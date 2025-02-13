@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.hashers import make_password
 
 from .models import Enrollment, Student
 
@@ -7,6 +8,14 @@ from .models import Enrollment, Student
 class StudentAdmin(admin.ModelAdmin):
     list_display = ["name", "email"]
     search_fields = ["name"]
+
+    def save_model(self, request, obj, form, change):
+        password = request.POST.get("password")
+        if not (
+            form.initial.get("password") and form.initial.get("password") == password
+        ):
+            obj.password = make_password(password)
+        return super().save_model(request, obj, form, change)
 
 
 @admin.register(Enrollment)
